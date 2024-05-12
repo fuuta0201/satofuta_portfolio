@@ -1,0 +1,8 @@
+@use 'global' as *;
+:root {
+  @include pc {
+    --height-header: .60rem;
+  }
+  @include sp {
+  }
+}

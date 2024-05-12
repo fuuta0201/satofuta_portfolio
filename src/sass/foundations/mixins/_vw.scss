@@ -1,0 +1,8 @@
+@use 'sass:math';
+
+@function vw($size, $width_device) {
+    @if type-of($size) == 'number' and not unitless($size) {
+      $size: math.div( $size , ($size * 0 + 1));
+    }
+    @return ( math.div($size , $width_device) * 100 ) + vw; // $size px
+}

@@ -15,37 +15,95 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+<style lang="scss" is:global>
+* {
+  box-sizing: border-box;
+}
+
+:root {
+	--Noto-Sans-JP: 'Noto Sans JP', sans-serif;
+	--height-header-pc: .77rem;
+	--height-header-sp: .50rem;
+}
+body {
+  color: #000;
+  font-family: var(--Noto-Sans-JP);
+	//font-family: Roboto, Arial, "游ゴシック体", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", Meiryo, sans-serif;
+  letter-spacing: .04em;
+  word-wrap : break-word;
+  overflow-wrap : break-word;
+  -webkit-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+       -o-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: #fff;
+  position: relative;
+  @include pc {
+    font-size: rem(16px);
+  }
+  @include sp {
+    font-size: rem(14px);
+  }
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  -webkit-transition: opacity .3s;
+          transition: opacity .3s;
+}
+button {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+@include pc {
+  a:hover {
+    opacity: .6;
+  }
+}
+
+//-----------------------------------
+.u-pc {
+  @include sp {
+    display: none !important;
+  }
+}
+.u-sp {
+  @include pc {
+    display: none !important;
+  }
+}
+$width-design-pc: 1280; // PC デザイン幅 px
+$width-design-sp: 375; // SP デザイン幅 px
+
+.l-container {
+  @include pc {
+    width: rem(1080px);
+    margin: 0 auto;
+  }
+  @include sp {
+    padding: 0 rem(24px);
+  }
+}
+
+.l-main {
+  @include pc {
+    width: 100%;
+    padding-top: rem(80px);
+  }
+  @include sp {
+    width: 100%;
+    padding-top: rem(70px);
+  }
+}
 </style>

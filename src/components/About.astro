@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets';
+import Logo from '/public/images/logo.png';
+import SectionTitle from "./common/SectionTitle.astro"
+
+const about = {
+  name: "佐藤　楓太",
+  school: "高専電子制御工学科を卒業後、専攻科に進学。主に制御工学、電気電子、情報通信工学を学んでいます。",
+  doc: "高専(本科、専攻科)ではPythonで機械学習（主に深層学習）を用いた研究を行っています。<br>19歳からアルバイトでのフロントエンド開発、2024年には個人でのWebサイト開発を行いました。",
+  git: "https://github.com/fuuta0201?tab=repositories",
+}
+---
+
+<div id="about"></div>
+<section class="about">
+  <div class="l-container about__container">
+    <SectionTitle title="About me" />
+    <div class="about__figure">
+      <Image src={Logo} alt="" />
+      <p class="about__name">{about.name}</p>
+    </div>
+    <ul class="about__list">
+      <li class="about__item">
+        <p>{about.school}</p>
+      </li>
+      <li class="about__item">
+        <p set:html={about.doc}></p>
+      </li>
+      <li class="about__item">
+        <p>github:<a href={about.git} class="c-text-link">{about.git}</a></p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style lang="scss">
+
+#about {
+  margin-top: rem(-200px);
+  padding-top: rem(200px);
+}
+
+.about {
+  //margin-bottom: rem(100px);
+  height: 100vh;
+  height: 100dvh;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__figure {
+    margin-bottom: rem(50px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: rem(80px);
+      height: rem(80px);
+      border-radius: 50%;
+      margin-bottom: rem(20px);
+    }
+  }
+  &__name {
+    font-size: rem(20px);
+  }
+  &__item {
+    p {
+      font-size: rem(20px);
+      line-height: normal;
+    }
+    &:has(a) {
+      padding-top: rem(20px);
+    }
+  }
+}
+</style>

@@ -1,0 +1,189 @@
+---
+import { Image } from 'astro:assets';
+import SectionTitle from "./common/SectionTitle.astro";
+import IconStarGrey from '/public/images/icons/star-grey.svg';
+import IconStarBlack from '/public/images/icons/star-black.svg';
+
+const front = [
+  {
+    name: "HTML",
+    perEx: 4,
+  },
+  {
+    name: "css/scss",
+    perEx: 3,
+  },
+  {
+    name: "JavaScript",
+    perEx: 3,
+  },
+  {
+    name: "Vue3/Nuxt3",
+    perEx: 3,
+  },
+  {
+    name: "Astro.js",
+    perEx: 3,
+  },
+  {
+    name: "TypeScript",
+    perEx: 1,
+  },
+  {
+    name: "WordPress",
+    perEx: 2,
+  },
+];
+
+const back = [
+  {
+    name: "Python",
+    perEx: 3,
+  },
+  {
+    name: "PHP(WordPress)",
+    perEx: 2,
+  },
+];
+
+const dev = [
+  {
+    name: "Docker/Docker-compose",
+    perEx: 3,
+  },
+  {
+    name: "git",
+    perEx: 4,
+  },
+  {
+    name: "Linux",
+    perEx: 3,
+  },
+  {
+    name: "gulp.js",
+    perEx: 2,
+  },
+  {
+    name: "Vite.js",
+    perEx: 2,
+  }
+];
+---
+
+<div id="skills"></div>
+<section class="skills">
+  <div class="l-container skills__container">
+    <SectionTitle title="Skills" />
+    <p class="skills__lead">
+      実務や研究、個人開発で使用した経験のあるスキルを習熟度と共に掲載しています。
+    </p>
+    <div class="skills__lists">
+      <p class="skills__title">Front End</p>
+      <ul class="skills__list">
+        {front.map(item => (
+          <li class="skills__item">
+            <p class="skills__name">{item.name}</p>
+            <div class="skills__stars" data-star={item.perEx}>
+              {Array.from({ length: item.perEx }).map((_, i) => (
+                <Image src={IconStarBlack} alt="" />
+              ))}
+              {Array.from({ length: 5 - item.perEx }).map((_, i) => (
+                <Image src={IconStarGrey} alt="" />
+              ))}
+            </div>
+          </li>
+        ))}
+      </ul>
+      <p class="skills__title">Back End</p>
+      <ul class="skills__list">
+        {back.map(item => (
+          <li class="skills__item">
+            <p class="skills__name">{item.name}</p>
+            <div class="skills__stars" data-star={item.perEx}>
+              {Array.from({ length: item.perEx }).map((_, i) => (
+                <Image src={IconStarBlack} alt="" />
+              ))}
+              {Array.from({ length: 5 - item.perEx }).map((_, i) => (
+                <Image src={IconStarGrey} alt="" />
+              ))}
+            </div>
+          </li>
+        ))}
+      </ul>
+      <p class="skills__title">Development</p>
+      <ul class="skills__list">
+        {dev.map(item => (
+          <li class="skills__item">
+            <p class="skills__name">{item.name}</p>
+            <div class="skills__stars" data-star={item.perEx}>
+              {Array.from({ length: item.perEx }).map((_, i) => (
+                <Image src={IconStarBlack} alt="" />
+              ))}
+              {Array.from({ length: 5 - item.perEx }).map((_, i) => (
+                <Image src={IconStarGrey} alt="" />
+              ))}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+
+#skills {
+  margin-top: rem(-200px);
+  padding-top: rem(200px);
+}
+
+.skills {
+  height: 100vh;
+  height: 100dvh;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__lead {
+    font-size: rem(16px);
+    margin-bottom: rem(50px);
+  }
+  &__lists {
+    width: 100%;
+    padding: rem(64px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  &__title {
+    font-size: rem(28px);
+    font-weight: bold;
+    margin-bottom: rem(40px);
+  }
+  &__list {
+    display: flex;
+    gap: rem(30px);
+    flex-wrap: wrap;
+    margin-bottom: rem(80px);
+  }
+  &__item {
+    width: rem(280px);
+    height: rem(80px);
+    border-radius: rem(5px);
+    box-shadow: 0 rem(5px) rem(5px) rem(5px) rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: rem(10px);
+  }
+  &__name {
+    font-size: rem(20px);
+    font-weight: bold;
+  }
+  &__stars {
+    display: flex;
+  }
+}
+</style>

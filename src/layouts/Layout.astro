@@ -24,6 +24,9 @@ const { title } = Astro.props;
 	</body>
 </html>
 <script>
+import gsap from 'gsap';
+import ScrollTrigger from "gsap/ScrollTrigger";
+
 const anchor = () => {
   document.querySelectorAll('a[href^="#"]')
     .forEach(anchor => {
@@ -43,8 +46,33 @@ const anchor = () => {
   }
 }
 
+const fadeUp = () => {
+  gsap.registerPlugin(ScrollTrigger);
+  document.querySelectorAll(".js-fade-up")
+  .forEach(target => {
+    if(target.clientWidth == 0) {
+      return;
+    }
+    gsap.fromTo(target, {
+      opacity: 0,
+      y: 40,
+    },{
+      scrollTrigger: {
+        trigger: target,
+        start: "top bottom-=10%",
+        end: "bottom top",
+        toggleActions: "play none none none"
+      },
+      duration: 0.6,
+      opacity: 1,
+      y: 0,
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   anchor();
+  fadeUp();
 });
 </script>
 <style lang="scss" is:global>

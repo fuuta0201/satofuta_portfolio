@@ -23,6 +23,30 @@ const { title } = Astro.props;
 		<slot />
 	</body>
 </html>
+<script>
+const anchor = () => {
+  document.querySelectorAll('a[href^="#"]')
+    .forEach(anchor => {
+      anchor.addEventListener("click", clickAnchor);
+    });
+  function clickAnchor (e){
+    e.preventDefault();
+    let id = this.getAttribute('href');
+    id = id.slice(1);
+    const target = document.getElementById(id);
+    if ( target ){
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  anchor();
+});
+</script>
 <style lang="scss" is:global>
 * {
   box-sizing: border-box;

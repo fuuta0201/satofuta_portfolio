@@ -5,10 +5,10 @@ import Logo from '/public/images/logo.png';
 
 <header class="header">
   <div class="header__container">
-    <div class="header__logo">
+    <a href="/" class="header__logo">
       <Image src={Logo} alt="" />
       <p class="header__text">Sato Futa's Portfolio</p>
-    </div>
+    </a>
     <ul class="header__list">
       <li>
         <a href="#about" class="header__link c-text-link">About</a>
@@ -48,6 +48,7 @@ import Logo from '/public/images/logo.png';
     display: flex;
     align-items: center;
     gap: rem(20px);
+    cursor: pointer;
     img {
       width: rem(50px);
       height: rem(50px);

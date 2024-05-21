@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets';
+import Logo from '/public/images/logo.png';
+---
+
+<header class="header">
+  <div class="header__container">
+    <a href="/" class="header__logo">
+      <Image src={Logo} alt="" />
+      <p class="header__text">Futa Sato's Portfolio</p>
+    </a>
+    <ul class="header__list">
+      <li>
+        <a href="#about" class="header__link c-text-link">About</a>
+      </li>
+      <li>
+        <a href="#works" class="header__link c-text-link">Works</a>
+      </li>
+      <li>
+        <a href="#skills" class="header__link c-text-link">Skills</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<style lang="scss">
+.header {
+  @include pc {
+    width: 100vw;
+    height: rem(60px);
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    background-color: #f7f7f7;
+  }
+  @include sp {
+  
+  }
+  &__container {
+    width: rem(1280px);
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: rem(20px);
+    cursor: pointer;
+    img {
+      width: rem(50px);
+      height: rem(50px);
+      border-radius: 50%;
+    }
+  }
+  &__text {
+    font-size: rem(20px);
+    font-weight: bold;
+  }
+  &__list {
+    display: flex;
+    gap: rem(25px);
+  }
+  &__link {
+    font-size: rem(16px);
+    font-weight: bold;
+  }
+}
+</style>

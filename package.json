@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
+    "@studio-freight/lenis": "^1.0.42",
     "astro": "^4.6.3",
+    "gsap": "^3.12.5",
     "typescript": "^5.4.5"
   },
   "devDependencies": {

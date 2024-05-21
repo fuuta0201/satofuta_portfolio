@@ -1,0 +1,79 @@
+<div class="c-section-bar">
+  <div class="c-section-bar__container">
+    <div class="c-section-bar__line"></div>
+    <ul class="c-section-bar__list">
+      <li class="c-section-bar__item js-section-target" data-section="about">
+        <span class="c-section-bar__ball"></span>
+        <span class="c-section-bar__text">About</span>
+      </li>
+      <li class="c-section-bar__item js-section-target" data-section="works">
+        <span class="c-section-bar__ball"></span>
+        <span class="c-section-bar__text">Works</span>
+      </li>
+      <li class="c-section-bar__item js-section-target" data-section="skills">
+        <span class="c-section-bar__ball"></span>
+        <span class="c-section-bar__text">Skills</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<style lang="scss">
+.c-section-bar {
+  height: rem(600px);
+  position: fixed;
+  left: rem(40px);
+  top: 50%;
+  transform: translateY(-50%);
+  &__container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  &__line {
+    position: absolute;
+    top: 0;
+    left: rem(4px);
+    z-index: -1;
+    width: rem(2px);
+    height: rem(600px);
+    background: #000;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: rem(200px);
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: rem(10px);
+    &.is-active {
+      .c-section-bar__ball {
+        background: #000;
+      }
+      .c-section-bar__text {
+        color: #000;
+        transform: translateX(15px);
+        font-size: rem(20px);
+      }
+    }
+  }
+  &__ball {
+    display: block;
+    width: rem(10px);
+    height: rem(10px);
+    border-radius: 50%;
+    background: #d7d6d6;
+    transition: all .5s ease;
+  }
+  &__text {
+    font-size: rem(16px);
+    font-weight: bold;
+    color: #d7d6d6;
+    transition: all .5s ease;
+  }
+}
+</style>

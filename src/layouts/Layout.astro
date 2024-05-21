@@ -1,4 +1,6 @@
 ---
+import Header from './Header.astro';
+import Footer from './Footer.astro';
 interface Props {
 	title: string;
 }
@@ -12,40 +14,268 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 	</head>
 	<body>
+    <Header />
 		<slot />
+    <Footer />
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+<script>
+import Lenis from '@studio-freight/lenis';
+import gsap from 'gsap';
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+const anchor = () => {
+  document.querySelectorAll('a[href^="#"]')
+    .forEach(anchor => {
+      anchor.addEventListener("click", clickAnchor);
+    });
+  function clickAnchor (e){
+    e.preventDefault();
+    let id = this.getAttribute('href');
+    id = id.slice(1);
+    const target = document.getElementById(id);
+    if ( target ){
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  }
+}
+
+const fadeUp = () => {
+  gsap.registerPlugin(ScrollTrigger);
+  document.querySelectorAll(".js-fade-up")
+  .forEach(target => {
+    if(target.clientWidth == 0) {
+      return;
+    }
+    gsap.fromTo(target, {
+      opacity: 0,
+      y: 80,
+    },{
+      scrollTrigger: {
+        trigger: target,
+        start: "top bottom-=10%",
+        end: "bottom top",
+        toggleActions: "play none none none"
+      },
+      duration: 0.6,
+      opacity: 1,
+      y: 0,
+    });
+  });
+}
+
+const sectionBar = () => {
+  const sections = document.querySelectorAll('.js-section-target');
+  document.querySelectorAll('.js-section')
+  .forEach(target => {
+    const current = Array.from(sections).find(sec => sec.getAttribute('data-section') == target.getAttribute('data-section'));
+    new IntersectionObserver(function(entries, observer) {
+      if ( entries[0].isIntersecting ) {
+        Array.from(sections).forEach(sec => sec.classList.remove('is-active'));
+        if ( target.getAttribute('data-section') != 'hero' ) {
+          current?.classList.add('is-active');
+        }
+      } 
+    }, { threshold: 0.0, rootMargin: '-50% 0px' }).observe(target);
+  });
+}
+
+const lenis = () => {
+  const lenis = new Lenis();
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+}
+
+// load
+const closeLoadingScreen = (selector) => {
+  gsap.timeline()
+    .to(selector, { opacity: 0, duration: 0.5 })
+};
+
+// hero title
+const animationHero = () => {
+  document.querySelectorAll('.js-hero')
+  .forEach(target => {
+    gsap.from(
+      target, 
+      {
+        duration: 2,
+        clipPath: "inset(100% 0% 0% 0%)",
+        ease: "power2.out",
+        opacity: 0,
+      }
+    );
+  })
+}
+
+// hero link
+const fadeLink = () => {
+  gsap.registerPlugin(ScrollTrigger);
+  document.querySelectorAll(".js-fade-up-hero")
+  .forEach(target => {
+    if(target.clientWidth == 0) {
+      return;
+    }
+    gsap.fromTo(target, {
+      opacity: 0,
+      y: 80,
+    },{
+      scrollTrigger: {
+        trigger: target,
+        start: "top bottom-=10%",
+        end: "bottom top",
+        toggleActions: "play none none none"
+      },
+      duration: 0.6,
+      opacity: 1,
+      y: 0,
+    });
+  });
+}
+
+// ロード完了したら
+window.onload = () => {
+  var webStorage = function () {
+    if (sessionStorage.getItem("access")) {
+      document.querySelector('.js-loader-bg')?.classList.remove('is-show');
+      closeLoadingScreen('.js-loader-bg');
+    } else {
+      // 初回アクセス時の処理
+      sessionStorage.setItem("access", "true");
+      document.querySelector('.js-loader-bg')?.classList.add('is-show');
+      setTimeout(() => {
+        closeLoadingScreen('.js-loader-bg');
+        animationHero();
+        setTimeout(function() {
+          fadeLink();
+          document.querySelector('.js-loader-bg')?.classList.remove('is-show');
+        }, 500);
+      }, 3000);
+    }
+  };
+  webStorage();
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  lenis();
+  anchor();
+  fadeUp();
+  sectionBar();
+});
+</script>
+<style lang="scss" is:global>
+* {
+  box-sizing: border-box;
+}
+
+:root {
+	--Noto-Sans-JP: 'Noto Sans JP', sans-serif;
+	--height-header-pc: .6rem;
+	--height-header-sp: .50rem;
+}
+body {
+  color: #000;
+  font-family: var(--Noto-Sans-JP);
+	//font-family: Roboto, Arial, "游ゴシック体", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", Meiryo, sans-serif;
+  letter-spacing: .04em;
+  word-wrap : break-word;
+  overflow-wrap : break-word;
+  -webkit-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+       -o-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: #fff;
+  position: relative;
+  @include pc {
+    font-size: rem(16px);
+  }
+  @include sp {
+    font-size: rem(14px);
+  }
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  -webkit-transition: opacity .3s;
+          transition: opacity .3s;
+}
+button {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+@include pc {
+  a:hover {
+    opacity: .6;
+  }
+}
+
+//-----------------------------------
+.u-pc {
+  @include sp {
+    display: none !important;
+  }
+}
+.u-sp {
+  @include pc {
+    display: none !important;
+  }
+}
+$width-design-pc: 1280; // PC デザイン幅 px
+$width-design-sp: 375; // SP デザイン幅 px
+
+.l-container {
+  @include pc {
+    width: rem(1280px);
+    margin: 0 auto;
+  }
+  @include sp {
+    padding: 0 rem(24px);
+  }
+}
+
+.l-main {
+  @include pc {
+    width: 100%;
+    padding-top: rem(60px);
+  }
+  @include sp {
+    width: 100%;
+    padding-top: rem(70px);
+  }
+}
+
+.c-text-link {
+  background: linear-gradient(currentColor, currentColor) 0 100%/0 1px no-repeat;
+  transition: background .5s ease;
+  will-change: transition;
+  line-height: 1.5;
+  @media (hover) {
+    &:hover {
+      background-size: 100% 1px;
+    }
+    button:hover &,
+    a:hover & {
+      background-size: 100% 1px;
+    }
+  }
+}
 </style>

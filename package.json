@@ -13,7 +13,6 @@
     "@astrojs/check": "^0.5.10",
     "astro": "^4.6.3",
     "gsap": "^3.12.5",
-    "lenis": "^1.0.45",
     "typescript": "^5.4.5"
   },
   "devDependencies": {

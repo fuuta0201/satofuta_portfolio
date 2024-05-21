@@ -57,7 +57,7 @@ const fadeUp = () => {
     }
     gsap.fromTo(target, {
       opacity: 0,
-      y: 40,
+      y: 80,
     },{
       scrollTrigger: {
         trigger: target,
@@ -72,9 +72,26 @@ const fadeUp = () => {
   });
 }
 
+const sectionBar = () => {
+  const sections = document.querySelectorAll('.js-section-target');
+  document.querySelectorAll('.js-section')
+  .forEach(target => {
+    const current = Array.from(sections).find(sec => sec.getAttribute('data-section') == target.getAttribute('data-section'));
+    new IntersectionObserver(function(entries, observer) {
+      if ( entries[0].isIntersecting ) {
+        Array.from(sections).forEach(sec => sec.classList.remove('is-active'));
+        if ( target.getAttribute('data-section') != 'hero' ) {
+          current?.classList.add('is-active');
+        }
+      } 
+    }, { threshold: 0.0, rootMargin: '-50% 0px' }).observe(target);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   anchor();
   fadeUp();
+  sectionBar();
 });
 </script>
 <style lang="scss" is:global>

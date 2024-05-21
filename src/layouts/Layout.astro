@@ -100,6 +100,76 @@ const lenis = () => {
   requestAnimationFrame(raf);
 }
 
+// load
+const closeLoadingScreen = (selector) => {
+  gsap.timeline()
+    .to(selector, { opacity: 0, duration: 0.5 })
+};
+
+// hero title
+const animationHero = () => {
+  document.querySelectorAll('.js-hero')
+  .forEach(target => {
+    gsap.from(
+      target, 
+      {
+        duration: 2,
+        clipPath: "inset(100% 0% 0% 0%)",
+        ease: "power2.out",
+        opacity: 0,
+      }
+    );
+  })
+}
+
+// hero link
+const fadeLink = () => {
+  gsap.registerPlugin(ScrollTrigger);
+  document.querySelectorAll(".js-fade-up-hero")
+  .forEach(target => {
+    if(target.clientWidth == 0) {
+      return;
+    }
+    gsap.fromTo(target, {
+      opacity: 0,
+      y: 80,
+    },{
+      scrollTrigger: {
+        trigger: target,
+        start: "top bottom-=10%",
+        end: "bottom top",
+        toggleActions: "play none none none"
+      },
+      duration: 0.6,
+      opacity: 1,
+      y: 0,
+    });
+  });
+}
+
+// ロード完了したら
+window.onload = () => {
+  var webStorage = function () {
+    if (sessionStorage.getItem("access")) {
+      document.querySelector('.js-loader-bg')?.classList.remove('is-show');
+      closeLoadingScreen('.js-loader-bg');
+    } else {
+      // 初回アクセス時の処理
+      sessionStorage.setItem("access", "true");
+      document.querySelector('.js-loader-bg')?.classList.add('is-show');
+      setTimeout(() => {
+        closeLoadingScreen('.js-loader-bg');
+        animationHero();
+        setTimeout(function() {
+          fadeLink();
+          document.querySelector('.js-loader-bg')?.classList.remove('is-show');
+        }, 500);
+      }, 3000);
+    }
+  };
+  webStorage();
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   lenis();
   anchor();

@@ -5,13 +5,64 @@ import IconChevronDown from '/public/images/icons/chevron-down.svg';
 
 <section class="hero js-section" data-section="hero">
   <div class="hero__container">
-    <p class="hero__text">Futa Sato's Portfolio Web Site</p>
-    <a href="#about" class="hero__link c-text-link">
+    <p class="hero__text js-hero">Futa Sato's Portfolio Web Site</p>
+    <a href="#about" class="hero__link c-text-link js-fade-up-hero">
       <span>View this site</span>
       <Image src={IconChevronDown} alt="" />
     </a>
   </div>
 </section>
+
+<script>
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+const animationHero = () => {
+  document.querySelectorAll('.js-hero')
+  .forEach(target => {
+    gsap.from(
+      target, 
+      {
+        duration: 2,
+        clipPath: "inset(100% 0% 0% 0%)",
+        ease: "power2.out",
+        opacity: 0,
+      }
+    );
+  })
+}
+
+const fadeLink = () => {
+  gsap.registerPlugin(ScrollTrigger);
+  document.querySelectorAll(".js-fade-up-hero")
+  .forEach(target => {
+    if(target.clientWidth == 0) {
+      return;
+    }
+    gsap.fromTo(target, {
+      opacity: 0,
+      y: 80,
+    },{
+      scrollTrigger: {
+        trigger: target,
+        start: "top bottom-=10%",
+        end: "bottom top",
+        toggleActions: "play none none none"
+      },
+      duration: 0.6,
+      opacity: 1,
+      y: 0,
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  animationHero();
+  setTimeout(function() {
+    fadeLink();
+  }, 500);
+})
+</script>
 
 <style lang="scss">
 .hero {
@@ -35,6 +86,7 @@ import IconChevronDown from '/public/images/icons/chevron-down.svg';
     align-items: center;
     gap: rem(40px);
     cursor: pointer;
+    opacity: 0;
     span {
       font-size: rem(30px);
       font-weight: bold;

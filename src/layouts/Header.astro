@@ -1,15 +1,16 @@
 ---
 import { Image } from 'astro:assets';
 import Logo from '/public/images/logo.png';
+import HeaderNavSp from '../components/common/HeaderNavSp.astro';
 ---
 
 <header class="header">
   <div class="header__container">
     <a href="/" class="header__logo">
       <Image src={Logo} alt="" />
-      <p class="header__text">Futa Sato's Portfolio</p>
+      <p class="header__text u-pc">Futa Sato's Portfolio</p>
     </a>
-    <ul class="header__list">
+    <ul class="header__list u-pc">
       <li>
         <a href="#about" class="header__link c-text-link">About</a>
       </li>
@@ -20,30 +21,80 @@ import Logo from '/public/images/logo.png';
         <a href="#skills" class="header__link c-text-link">Skills</a>
       </li>
     </ul>
+    <button class="header__button u-sp js-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
+  <HeaderNavSp />
 </header>
+
+<script>
+const openNav = () => {
+  const pannel = document.querySelector('.js-nav-pannel');
+  document.querySelectorAll('.js-nav')
+  .forEach(button => {
+    button.addEventListener('click', () => {
+      document.body.style.overflow = "hidden";
+      pannel?.setAttribute('area-expanded', "true");
+    });
+  });
+}
+
+const closeNav = () => {
+  const pannel = document.querySelector('.js-nav-pannel');
+  document.querySelectorAll('.js-nav-close')
+  .forEach(button => {
+    button.addEventListener('click', () => {
+      document.body.style.overflow = "";
+      pannel?.setAttribute('area-expanded', "false");
+    });
+  });
+  // move to link
+  document.querySelectorAll('.js-nav-link')
+  .forEach(link => {
+    link.addEventListener('click', () => {
+      document.body.style.overflow = "";
+      pannel?.setAttribute('area-expanded', "false");
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  openNav();
+  closeNav();
+});
+</script>
 
 <style lang="scss">
 .header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background-color: #f7f7f7;
   @include pc {
-    width: 100vw;
+    padding: 0 rem(60px);
     height: rem(60px);
-    position: fixed;
-    top: 0;
-    z-index: 10;
     display: flex;
     justify-content: center;
-    background-color: #f7f7f7;
   }
   @include sp {
-  
+    height: rem(50px);
+    padding: 0 rem(20px);
   }
   &__container {
-    width: rem(1280px);
     height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @include pc {
+      width: rem(1280px);
+    }
+    @include sp {
+    
+    }
   }
   &__logo {
     display: flex;
@@ -54,6 +105,10 @@ import Logo from '/public/images/logo.png';
       width: rem(50px);
       height: rem(50px);
       border-radius: 50%;
+      @include sp {
+        width: rem(40px);
+        height: rem(40px);
+      }
     }
   }
   &__text {
@@ -67,6 +122,17 @@ import Logo from '/public/images/logo.png';
   &__link {
     font-size: rem(16px);
     font-weight: bold;
+  }
+  &__button {
+    display: flex;
+    flex-direction: column;
+    gap: rem(4px);
+    span {
+      display: block;
+      width: rem(32px);
+      height: rem(2px);
+      background: #000;
+    }
   }
 }
 </style>

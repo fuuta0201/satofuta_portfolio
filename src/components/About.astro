@@ -41,9 +41,9 @@ const about = {
 }
 
 .about {
-  //margin-bottom: rem(100px);
-  height: 100vh;
-  height: 100dvh;
+  margin-bottom: rem(300px);
+  //height: 100vh;
+  //height: 100dvh;
   &__container {
     display: flex;
     flex-direction: column;
@@ -63,6 +63,11 @@ const about = {
   }
   &__name {
     font-size: rem(20px);
+  }
+  &__list {
+    @include sp {
+      width: 100%;
+    }
   }
   &__item {
     p {

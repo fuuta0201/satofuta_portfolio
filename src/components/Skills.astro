@@ -30,8 +30,8 @@ const front = [
     perEx: 1,
   },
   {
-    name: "WordPress",
-    perEx: 2,
+    name: "WordPress(PHP)",
+    perEx: 4,
   },
 ];
 
@@ -39,10 +39,6 @@ const back = [
   {
     name: "Python",
     perEx: 3,
-  },
-  {
-    name: "PHP(WordPress)",
-    perEx: 2,
   },
 ];
 
@@ -57,7 +53,7 @@ const dev = [
   },
   {
     name: "Linux",
-    perEx: 3,
+    perEx: 2,
   },
   {
     name: "gulp.js",
@@ -145,6 +141,7 @@ const dev = [
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 rem(50px);
   }
   &__lead {
     font-size: rem(16px);
@@ -152,10 +149,16 @@ const dev = [
   }
   &__lists {
     width: 100%;
-    padding: rem(64px);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    @include pc {
+      max-width: rem(1280px);
+      padding: rem(64px);
+    }
+    @include sp {
+    
+    }
   }
   &__title {
     font-size: rem(28px);
@@ -167,6 +170,9 @@ const dev = [
     gap: rem(30px);
     flex-wrap: wrap;
     margin-bottom: rem(80px);
+    @include sp {
+      width: 100%;
+    }
   }
   &__item {
     width: rem(280px);
@@ -178,6 +184,9 @@ const dev = [
     justify-content: center;
     align-items: center;
     gap: rem(10px);
+    @include sp {
+      width: 100%;
+    }
   }
   &__name {
     font-size: rem(20px);

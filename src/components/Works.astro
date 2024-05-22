@@ -41,6 +41,20 @@ const works = [
             </p>
           </a>
         </li>
+        <li class="works__item">
+          <a href={work.link} class="works__link" target="_blank" rel="nofollow noreferrer noopener">
+            <div class="works__figure">
+              <Image src={work.img} alt="" />
+            </div>
+            <p class="works__name">{work.name}</p>
+            <p class="works__description">{work.desc}</p>
+            <p class="works__hashs">
+              {work.hashs.map(hash => (
+                <span>{hash}</span>
+              ))}
+            </p>
+          </a>
+        </li>
       ))}
     </ul>
   </div>
@@ -54,16 +68,18 @@ const works = [
 }
 
 .works {
-  //margin-bottom: rem(100px);
-  height: 100vh;
-  height: 100dvh;
+  margin-bottom: rem(300px);
+  //height: 100vh;
+  //height: 100dvh;
   &__container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 rem(50px);
   }
   &__list {
     width: 100%;
+    max-width: rem(1280px);
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;

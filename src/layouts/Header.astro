@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Logo from '/public/images/logo.png';
+import HeaderNavSp from '../components/common/HeaderNavSp.astro';
 ---
 
 <header class="header">
@@ -20,13 +21,51 @@ import Logo from '/public/images/logo.png';
         <a href="#skills" class="header__link c-text-link">Skills</a>
       </li>
     </ul>
-    <button class="header__button">
+    <button class="header__button js-nav">
       <span></span>
       <span></span>
       <span></span>
     </button>
   </div>
+  <HeaderNavSp />
 </header>
+
+<script>
+const openNav = () => {
+  const pannel = document.querySelector('.js-nav-pannel');
+  document.querySelectorAll('.js-nav')
+  .forEach(button => {
+    button.addEventListener('click', () => {
+      document.body.style.overflow = "hidden";
+      pannel?.setAttribute('area-expanded', "true");
+    });
+  });
+}
+
+const closeNav = () => {
+  const pannel = document.querySelector('.js-nav-pannel');
+  document.querySelectorAll('.js-nav-close')
+  .forEach(button => {
+    button.addEventListener('click', () => {
+      document.body.style.overflow = "";
+      pannel?.setAttribute('area-expanded', "false");
+    });
+  });
+  // move to link
+  document.querySelectorAll('.js-nav-link')
+  .forEach(link => {
+    link.addEventListener('click', () => {
+      document.body.style.overflow = "";
+      pannel?.setAttribute('area-expanded', "false");
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  openNav();
+  closeNav();
+});
+</script>
 
 <style lang="scss">
 .header {

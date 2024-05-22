@@ -41,20 +41,6 @@ const works = [
             </p>
           </a>
         </li>
-        <li class="works__item">
-          <a href={work.link} class="works__link" target="_blank" rel="nofollow noreferrer noopener">
-            <div class="works__figure">
-              <Image src={work.img} alt="" />
-            </div>
-            <p class="works__name">{work.name}</p>
-            <p class="works__description">{work.desc}</p>
-            <p class="works__hashs">
-              {work.hashs.map(hash => (
-                <span>{hash}</span>
-              ))}
-            </p>
-          </a>
-        </li>
       ))}
     </ul>
   </div>

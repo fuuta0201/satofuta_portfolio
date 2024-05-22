@@ -1,0 +1,108 @@
+---
+import { Image } from 'astro:assets';
+import IconChevronDown from '/public/images/icons/chevron-down.svg';
+---
+
+<nav class="nav u-sp js-nav-pannel" area-expanded="false">
+  <div class="nav__head">
+    <button class="nav__button js-nav-close">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  <div class="l-container">
+    <ul class="nav__list">
+      <li class="nav__item">
+        <a href="#about" class="nav__link js-nav-link">
+          <span>About</span>
+          <Image src={IconChevronDown} alt="" />
+        </a>
+      </li>
+      <li class="nav__item">
+        <a href="#works" class="nav__link js-nav-link">
+          <span>Works</span>
+          <Image src={IconChevronDown} alt="" />
+        </a>
+      </li>
+      <li class="nav__item">
+        <a href="#skills" class="nav__link js-nav-link">
+          <span>Skills</span>
+          <Image src={IconChevronDown} alt="" />
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style lang="scss">
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 20;
+  transform: translateY(-1000px);
+  transition: transform .5s ease;
+  &[area-expanded="true"] {
+    transform: translateY(0);
+  }
+  &__head {
+    width: 100%;
+    height: rem(50px);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 rem(20px);
+    margin-bottom: rem(40px);
+  }
+  &__button {
+    display: flex;
+    flex-direction: column;
+    //gap: rem(4px);
+    span {
+      display: block;
+      width: rem(32px);
+      height: rem(2px);
+      background: #000;
+      &:nth-of-type(1) {
+        transform: rotate(45deg);
+      }
+      &:nth-of-type(2) {
+        margin: -2px 0;
+        opacity: 0;
+      }
+      &:nth-of-type(3) {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  &__list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  &__item {
+    width: 100%;
+    height: rem(56px);
+  }
+  &__link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span {
+      font-size: rem(16px);
+      font-weight: bold;
+    }
+    img {
+      transform: rotate(270deg);
+      width: rem(24px);
+      height: rem(24px);
+    }
+  }
+}
+</style>

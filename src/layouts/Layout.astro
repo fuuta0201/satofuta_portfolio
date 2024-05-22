@@ -153,6 +153,11 @@ window.onload = () => {
     if (sessionStorage.getItem("access")) {
       document.querySelector('.js-loader-bg')?.classList.remove('is-show');
       closeLoadingScreen('.js-loader-bg');
+      animationHero();
+      setTimeout(function() {
+        fadeLink();
+        document.querySelector('.js-loader-bg')?.classList.remove('is-show');
+      }, 500);
     } else {
       // 初回アクセス時の処理
       sessionStorage.setItem("access", "true");

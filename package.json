@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
+    "@astrojs/netlify": "^5.2.1",
     "@studio-freight/lenis": "^1.0.42",
     "astro": "^4.6.3",
     "gsap": "^3.12.5",

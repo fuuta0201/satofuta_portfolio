@@ -7,23 +7,23 @@ import IconStarBlack from '/public/images/icons/star-black.svg';
 const front = [
   {
     name: "HTML",
-    perEx: 4,
+    perEx: 1,
   },
   {
     name: "css/scss",
-    perEx: 4,
+    perEx: 1,
   },
   {
     name: "JavaScript",
-    perEx: 3,
+    perEx: 1,
   },
   {
     name: "Vue3/Nuxt3",
-    perEx: 3,
+    perEx: 1,
   },
   {
     name: "Astro.js",
-    perEx: 3,
+    perEx: 1,
   },
   {
     name: "TypeScript",
@@ -31,37 +31,37 @@ const front = [
   },
   {
     name: "WordPress(PHP)",
-    perEx: 4,
+    perEx: 1,
   },
 ];
 
 const back = [
   {
     name: "Python",
-    perEx: 3,
+    perEx: 1,
   },
 ];
 
 const dev = [
   {
     name: "Docker/Docker-compose",
-    perEx: 3,
+    perEx: 1,
   },
   {
     name: "git",
-    perEx: 4,
+    perEx: 1,
   },
   {
     name: "Linux",
-    perEx: 2,
+    perEx: 1,
   },
   {
     name: "gulp.js",
-    perEx: 2,
+    perEx: 1,
   },
   {
     name: "Vite.js",
-    perEx: 2,
+    perEx: 1,
   }
 ];
 ---
@@ -80,10 +80,10 @@ const dev = [
           <li class="skills__item">
             <p class="skills__name">{item.name}</p>
             <div class="skills__stars" data-star={item.perEx}>
-              {Array.from({ length: item.perEx }).map((_, i) => (
+              {Array.from({ length: item.perEx }).map(() => (
                 <Image src={IconStarBlack} alt="" />
               ))}
-              {Array.from({ length: 5 - item.perEx }).map((_, i) => (
+              {Array.from({ length: 5 - item.perEx }).map(() => (
                 <Image src={IconStarGrey} alt="" />
               ))}
             </div>
@@ -96,10 +96,10 @@ const dev = [
           <li class="skills__item">
             <p class="skills__name">{item.name}</p>
             <div class="skills__stars" data-star={item.perEx}>
-              {Array.from({ length: item.perEx }).map((_, i) => (
+              {Array.from({ length: item.perEx }).map(() => (
                 <Image src={IconStarBlack} alt="" />
               ))}
-              {Array.from({ length: 5 - item.perEx }).map((_, i) => (
+              {Array.from({ length: 5 - item.perEx }).map(() => (
                 <Image src={IconStarGrey} alt="" />
               ))}
             </div>
@@ -112,10 +112,10 @@ const dev = [
           <li class="skills__item">
             <p class="skills__name">{item.name}</p>
             <div class="skills__stars" data-star={item.perEx}>
-              {Array.from({ length: item.perEx }).map((_, i) => (
+              {Array.from({ length: item.perEx }).map(() => (
                 <Image src={IconStarBlack} alt="" />
               ))}
-              {Array.from({ length: 5 - item.perEx }).map((_, i) => (
+              {Array.from({ length: 5 - item.perEx }).map(() => (
                 <Image src={IconStarGrey} alt="" />
               ))}
             </div>

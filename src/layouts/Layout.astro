@@ -31,22 +31,24 @@ import gsap from 'gsap';
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 const anchor = () => {
-  document.querySelectorAll('a[href^="#"]')
-    .forEach(anchor => {
-      anchor.addEventListener("click", clickAnchor);
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", {
+      handleEvent: function(event: MouseEvent) {
+        event.preventDefault();
+        const href = (event.currentTarget as HTMLAnchorElement).getAttribute('href');
+        if (href) {
+          const id = href.slice(1);
+          const target = document.getElementById(id);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+          }
+        }
+      }
     });
-  function clickAnchor (e){
-    e.preventDefault();
-    let id = this.getAttribute('href');
-    id = id.slice(1);
-    const target = document.getElementById(id);
-    if ( target ){
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-    }
-  }
+  });
 }
 
 const fadeUp = () => {
@@ -78,7 +80,7 @@ const sectionBar = () => {
   document.querySelectorAll('.js-section')
   .forEach(target => {
     const current = Array.from(sections).find(sec => sec.getAttribute('data-section') == target.getAttribute('data-section'));
-    new IntersectionObserver(function(entries, observer) {
+    new IntersectionObserver(function(entries) {
       if ( entries[0].isIntersecting ) {
         Array.from(sections).forEach(sec => sec.classList.remove('is-active'));
         if ( target.getAttribute('data-section') != 'hero' ) {
@@ -92,7 +94,7 @@ const sectionBar = () => {
 const lenis = () => {
   const lenis = new Lenis();
 
-  function raf(time) {
+  function raf(time: number) {
     lenis.raf(time);
     requestAnimationFrame(raf);
   }
@@ -101,7 +103,7 @@ const lenis = () => {
 }
 
 // load
-const closeLoadingScreen = (selector) => {
+const closeLoadingScreen = (selector: string) => {
   gsap.timeline()
     .to(selector, { opacity: 0, duration: 0.5 })
 };

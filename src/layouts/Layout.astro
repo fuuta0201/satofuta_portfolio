@@ -6,16 +6,96 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+const urlDomain = "https://futasato-portfolio.netlify.app";
+
+const description: string =
+  "Futa Sato's Portfolio プロフィール、制作実績、習得技術を掲載しています。";
+const siteType: string = "website";
+const siteTitle: string = title;
+const ogpImageURL = new URL("/meta/ogp.png", urlDomain);
+const twitterCard: string = "summary_large_image";
+
+//favicon
+const favicon16 = new URL(
+  "/meta/favicon-16x16.png",
+  urlDomain
+);
+const favicon32 = new URL(
+  "/meta/favicon-32x32.png",
+  urlDomain
+);
+const favicon96 = new URL(
+  "/meta/favicon-96x96.png",
+  urlDomain
+);
+const appleTouch = {
+  x180: new URL(
+    "/meta/apple-touch-icon-180x180.png",
+    urlDomain
+  ),
+  x152: new URL(
+    "/meta/apple-touch-icon-152x152.png",
+    urlDomain
+  ),
+  x144: new URL(
+    "/meta/apple-touch-icon-144x144.png",
+    urlDomain
+  ),
+  x120: new URL(
+    "/meta/apple-touch-icon-120x120.png",
+    urlDomain
+  ),
+  x114: new URL(
+    "/meta/apple-touch-icon-114x114.png",
+    urlDomain
+  ),
+  x76: new URL(
+    "/meta/apple-touch-icon-76x76.png",
+    urlDomain
+  ),
+  x72: new URL(
+    "/meta/apple-touch-icon-72x72.png",
+    urlDomain
+  ),
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 	<head>
+    <!-- meta -->
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="" />
-		<meta name="generator" content={Astro.generator} />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="description" content={description} />
+    <meta property="og:url" content={urlDomain} />
+    <meta property="og:type" content={siteType} />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={siteTitle} />
+    <meta property="og:image" content={ogpImageURL} />
+    <meta name="twitter:card" content={twitterCard} />
+    <meta name="twitter:title" content={siteTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogpImageURL} />
+    <!-- / -->
+		<link rel="canonical" href="https://futasato-portfolio.netlify.app/" />
+
+		<link rel="icon" href={favicon16} sizes="16x16" type="image/png" />
+    <link rel="icon" href={favicon32} sizes="32x32" type="image/png" />
+    <link rel="icon" href={favicon96} sizes="96x96" type="image/png" />
+
+    <link rel="apple-touch-icon" href={appleTouch.x180} sizes="180x180" />
+    <link rel="apple-touch-icon" href={appleTouch.x152} sizes="152x152" />
+    <link rel="apple-touch-icon" href={appleTouch.x144} sizes="144x144" />
+    <link rel="apple-touch-icon" href={appleTouch.x120} sizes="120x120" />
+    <link rel="apple-touch-icon" href={appleTouch.x114} sizes="114x114" />
+    <link rel="apple-touch-icon" href={appleTouch.x76} sizes="76x76" />
+    <link rel="apple-touch-icon" href={appleTouch.x72} sizes="72x72" />
+
+    <meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 	</head>

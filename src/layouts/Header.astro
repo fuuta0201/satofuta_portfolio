@@ -31,15 +31,15 @@ import Logo from '/public/images/logo.png';
 <style lang="scss">
 .header {
   width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background-color: #f7f7f7;
   @include pc {
     padding: 0 rem(60px);
     height: rem(60px);
-    position: fixed;
-    top: 0;
-    z-index: 10;
     display: flex;
     justify-content: center;
-    background-color: #f7f7f7;
   }
   @include sp {
     height: rem(50px);

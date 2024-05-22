@@ -24,7 +24,13 @@ import IconChevronDown from '/public/images/icons/chevron-down.svg';
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: rem(100px);
+    @include pc {
+      gap: rem(100px);
+    }
+    @include sp {
+      padding: 0 rem(24px);
+      gap: rem(40px);
+    }
   }
   &__text {
     font-size: rem(60px);

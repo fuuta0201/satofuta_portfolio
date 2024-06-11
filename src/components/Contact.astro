@@ -1,0 +1,43 @@
+---
+import SectionTitle from "./common/SectionTitle.astro"
+---
+
+
+<div id="contact"></div>
+<section class="contact">
+  <div class="l-container contact__container js-section" data-section="contact">
+    <SectionTitle title="Contact" />
+    <div class="contact__row">
+      <p>gmail:</p>
+      <a href="mailto:satofuta0201@gmail.com" class="contact__link c-text-link">satofuta0201@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+
+#contact {
+  margin-top: rem(-200px);
+  padding-top: rem(200px);
+}
+
+.contact {
+  margin-bottom: rem(300px);
+  //height: 100vh;
+  //height: 100dvh;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include pc {
+      padding: 0 rem(50px);
+    }
+  }
+  &__row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: rem(15px);
+  }
+}
+</style>

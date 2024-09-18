@@ -26,8 +26,12 @@ const front = [
     perEx: 4,
   },
   {
+    name: "React/Next.js",
+    perEx: 3,
+  },
+  {
     name: "TypeScript",
-    perEx: 1,
+    perEx: 3,
   },
   {
     name: "WordPress(PHP)",
@@ -81,10 +85,10 @@ const dev = [
             <p class="skills__name">{item.name}</p>
             <div class="skills__stars" data-star={item.perEx}>
               {Array.from({ length: item.perEx }).map(() => (
-                <Image src={IconStarBlack} alt="" />
+                <img src="/images/icons/star-black.svg" alt="">
               ))}
               {Array.from({ length: 5 - item.perEx }).map(() => (
-                <Image src={IconStarGrey} alt="" />
+                <img src="/images/icons/star-grey.svg" alt="">
               ))}
             </div>
           </li>
@@ -97,10 +101,10 @@ const dev = [
             <p class="skills__name">{item.name}</p>
             <div class="skills__stars" data-star={item.perEx}>
               {Array.from({ length: item.perEx }).map(() => (
-                <Image src={IconStarBlack} alt="" />
+                <img src="/images/icons/star-black.svg" alt="">
               ))}
               {Array.from({ length: 5 - item.perEx }).map(() => (
-                <Image src={IconStarGrey} alt="" />
+                <img src="/images/icons/star-grey.svg" alt="">
               ))}
             </div>
           </li>
@@ -157,7 +161,7 @@ const dev = [
       padding: rem(64px);
     }
     @include sp {
-    
+
     }
   }
   &__title {

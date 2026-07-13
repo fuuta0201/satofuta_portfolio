@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+:root {
+  --primary: #f7f7f7;
+  --secondary: #f6f7f9;
+  --color: #17181c;
+  --button: #3d50f5;
+  --button-hover: #4f61f9;
+  --button-disabled: #bfd0ff;
+  --line: #353841;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --primary: #17181c;
+    --secondary: #23262f;
+    --color: #f7f7f7;
+    --button: #b3c7ff;
+    --button-hover: #c9d7ff;
+    --button-disabled: #e4ebff;
+    --line: #c1c3c8;
+  }
+}
+
+html[data-theme="dark"] {
+  --primary: #17181c;
+  --secondary: #23262f;
+  --color: #f7f7f7;
+  --button: #b3c7ff;
+  --button-hover: #c9d7ff;
+  --button-disabled: #e4ebff;
+  --line: #c1c3c8;
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-color: var(--color);
+  --color-button: var(--button);
+  --color-button-hover: var(--button-hover);
+  --color-button-disabled: var(--button-disabled);
+  --color-line: var(--line);
+}

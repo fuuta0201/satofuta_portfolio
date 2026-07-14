@@ -1,9 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import MainVisual from './_components/MainVisual';
 ---
 
 <Layout>
-	<div class="w-full h-50 bg-primary">
-		<h1 class="mx-auto text-color">Top Page</h1>
+	<div class="w-full h-screen">
+		<MainVisual client:load>
+			<div class="w-full h-full px-60 absolute inset-0 flex flex-col items-center justify-center">
+				<h1 class="text-white font-bold text-8xl text-center mb-5">Futa Sato</h1>
+				<p class="text-white text-center">Software Engineer</p>
+			</div>
+		</MainVisual>
 	</div>
 </Layout>

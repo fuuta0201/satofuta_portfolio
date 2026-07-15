@@ -105,7 +105,7 @@ const ShinyText: React.FC<ShinyTextProps> = ({
   // Transform: p=0 -> 150% (shine off right), p=100 -> -50% (shine off left)
   const backgroundPosition = useTransform(
     progress,
-    (p) => `${150 - p * 2}% center`,
+    (p) => `${150 - p * 2}% center`
   );
 
   const handleMouseEnter = useCallback(() => {

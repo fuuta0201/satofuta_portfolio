@@ -300,6 +300,6 @@ html[data-theme="dark"] {
   }
 
   body {
-    @apply min-h-screen bg-background text-foreground;
+    @apply bg-background text-foreground min-h-screen;
   }
 }

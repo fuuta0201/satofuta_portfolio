@@ -1,30 +1,32 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import MainVisual from './_components/MainVisual';
-import ShinyText from '../components/ShinyText';
+import Layout from "../layouts/Layout.astro";
+import MainVisual from "./_components/MainVisual";
+import ShinyText from "../components/ShinyText";
 ---
 
 <Layout>
-	<div class="w-full h-screen">
-		<MainVisual client:load>
-			<div class="w-full h-full px-60 absolute inset-0 flex flex-col items-center justify-center">
-				<!-- <h1 class="text-white font-bold text-8xl text-center mb-5">Futa Sato</h1> -->
-				<ShinyText
-					text="Futa Sato"
-					speed={2}
-					delay={0}
-					color="#b5b5b5"
-					shineColor="#ffffff"
-					spread={120}
-					direction="left"
-					yoyo={false}
-					pauseOnHover
-					disabled={false}
-					className="font-bold text-8xl text-center mb-5"
-					client:load
-				/>
-				<p class="text-white text-center">Software Engineer</p>
-			</div>
-		</MainVisual>
-	</div>
+  <div class="h-screen w-full">
+    <MainVisual client:load>
+      <div
+        class="absolute inset-0 flex h-full w-full flex-col items-center justify-center px-60"
+      >
+        <!-- <h1 class="text-white font-bold text-8xl text-center mb-5">Futa Sato</h1> -->
+        <ShinyText
+          text="Futa Sato"
+          speed={2}
+          delay={0}
+          color="#b5b5b5"
+          shineColor="#ffffff"
+          spread={120}
+          direction="left"
+          yoyo={false}
+          pauseOnHover
+          disabled={false}
+          className="mb-5 text-center text-8xl font-bold"
+          client:load
+        />
+        <p class="text-center text-white">Software Engineer</p>
+      </div>
+    </MainVisual>
+  </div>
 </Layout>
